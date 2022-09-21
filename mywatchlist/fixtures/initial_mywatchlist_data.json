@@ -1,0 +1,112 @@
+[
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":1,
+        "fields":{
+            "watched": false,
+            "title": "Dune",
+            "rating": 0,
+            "release_date": "Oktober 13, 2021",
+            "review": ""
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":2,
+        "fields":{
+            "watched": true,
+            "title": "Inception",
+            "rating": 9,
+            "release_date": "Juli 16, 2010",
+            "review": "Film Sci-Fi yang menegangkan, membuat penasaran dengan musik yang luar biasa"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":3,
+        "fields":{
+            "watched": false,
+            "title": "Blade Runner 2049",
+            "rating": 0,
+            "release_date": "Oktober 6, 2017",
+            "review": ""
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":4,
+        "fields":{
+            "watched": true,
+            "title": "Marriage Story",
+            "rating": 8,
+            "release_date": "November 15, 2019",
+            "review": "Gambaran atas pernikahan modern yang sangat realistis dan menyayat hati"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":5,
+        "fields":{
+            "watched": true,
+            "title": "Joker",
+            "rating": 7,
+            "release_date": "Oktober 2, 2019",
+            "review": "Aktingnya fantastis, musiknya bagus, tapi plotnya kurang"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":6,
+        "fields":{
+            "watched": true,
+            "title": "Top Gun: Maverick",
+            "rating": 8,
+            "release_date": "Mei 27, 2022",
+            "review": "Scene terbangnya paling terbaik, tapi plot ceritanya agak dangkal"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":7,
+        "fields":{
+            "watched": true,
+            "title": "Dunkirk",
+            "rating": 8,
+            "release_date": "Juli 20, 2017",
+            "review": "Sinematografisnya bagus, representasi perang dunia kedua cukup akurat"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":8,
+        "fields":{
+            "watched": false,
+            "title": "Mad Max: Fury Road",
+            "rating": 0,
+            "release_date": "Mei 14, 2015",
+            "review": ""
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":9,
+        "fields":{
+            "watched": true,
+            "title": "Star Wars Episode III: Revenge of the Sith",
+            "rating": 7,
+            "release_date": "Mei 19, 2005",
+            "review": "It's over Anakin, I have the high ground"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":10,
+        "fields":{
+            "watched": true,
+            "title": "Toy Story",
+            "rating": 9,
+            "release_date": "November 22, 1995",
+            "review": "To infinity... and beyond"
+        }
+    }
+]
