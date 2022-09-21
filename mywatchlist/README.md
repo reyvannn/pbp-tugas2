@@ -25,6 +25,6 @@ Data delivery diperlukan dalam implementasi platform untuk melakukan pertukaran 
 10. Deploy
 
 ## Screenshot Postman
-![](/mywatchlist/Screenshot Postman/HTML.png)
-![](/mywatchlist/Screenshot Postman/XML.png)
-![](/mywatchlist/Screenshot Postman/JSON.png)
+![](/mywatchlist/Screenshot%20Postman/HTML.png)
+![](/mywatchlist/Screenshot%20Postman/XML.png)
+![](/mywatchlist/Screenshot%20Postman/JSON.png)
