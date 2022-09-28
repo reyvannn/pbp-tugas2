@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>todolist</title>
+{% endblock meta %}
+
+ {% block content %}
+
+  <h4>Hello, {{user.get_username}}</h4>
+
+  <h3>TO DO LIST</h3>
+
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Description</th>
+    </tr>
+    {% for task in list_task %}
+      <tr>
+        <td>{{ todo.date }}</td>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.description }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+    <br>
+
+  <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
+
+  <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+
+  {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+        </ul>
+  {% endif %}
+
+ {% endblock content %}
