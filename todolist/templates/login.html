@@ -1,31 +1,60 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<title>Login</title>
+<title>todolist</title>
 {% endblock meta %}
 
 {% block content %}
 
-<div class = "login">
+<style>
+* {
+    text-align: center;
+}
+a {
+    color: #ffffff;
+}
+table {
+    border-collapse: separate;
+    box-shadow: 0 0 1vw;
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 7vw;
+    color: #ffffff;
+    opacity: 0.9;
+    position: center;
+}
+.login {
+    transform: translateX(150%);
+    width: 25%;
+    background-color: #ffffff;
+    border-radius: 0.5vw;
+}
+td{
+    padding: 0.5vw;
+}
+h5 {
+    padding: 1vw;
+}
+</style>
 
-    <h1>Login</h1>
-
-    <form method="POST" action="">
+<div>
+    <h1 style="color: #292b2c; margin-top: 3vw;">Login</h1>
+    <form class = "login" method="POST" action="">
         {% csrf_token %}
         <table>
             <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                <td style="color: #292b2c">Username: </td>
+                <td ><input type="text" name="username" placeholder="Username" class="form-control"></td>
             </tr>
 
             <tr>
-                <td>Password: </td>
+                <td style="color: #292b2c">Password: </td>
                 <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
             </tr>
 
             <tr>
                 <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
+                <td><input class="btn login_btn btn-dark !important" type="submit" value="Login"></td>
             </tr>
         </table>
     </form>
@@ -38,7 +67,7 @@
         </ul>
     {% endif %}
 
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+    <h5>Belum mempunyai akun?</h5> <a href="{% url 'todolist:register' %}">Buat Akun</a>
 
 </div>
 
