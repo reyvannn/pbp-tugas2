@@ -1,12 +1,34 @@
 {% extends 'base.html' %}
-
 {% block meta %}
 <title>todolist</title>
+
+<script>
+    function addTask(){
+        var taskData = $("#taskForm").serialize();
+        if ($("#title").val() && $("#description").val()) {
+            $.ajax({
+                    type: "POST",
+                    data: taskData,
+                    url: "/todolist/add/",
+                    success: function (response) {
+                        $("#taskForm").reset();
+                    }
+            });
+        }
+    }
+
+
+
+</script>
+
 {% endblock meta %}
 
- {% block content %}
+{% block content %}
 
 <style>
+    #myModal label, #myModal h2{
+        color: black;
+    }
     nav {
         box-shadow: 0 0 2vw #757575;
     }
@@ -32,35 +54,68 @@
 </style>
 
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand col-sm" href="/todolist">{{user.get_username}}</a>
-    <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
-    <button><a style="color: #1b1b1b" href="{% url 'todolist:logout' %}">Logout</a></button>
+    <a class="navbar-brand col-sm" href="/todolist">{{user.get_username}}</a>
+        <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">Add New Task</button>
+        <a class="btn btn-light" href="{% url 'todolist:logout' %}">Logout</a>
 </nav>
 
-  <h4>Hello, {{user.get_username}}</h4>
+    <h4>Hello, {{user.get_username}}</h4>
+    <h3>TO DO LIST</h3>
 
-  <h3>TO DO LIST</h3>
-
-  <table id="table">
-    {% for task in list_task %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ task.title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ task.date }}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ task.description }}</h6>
+    <table id="table">
+        {% for task in list_task %}
+            <tr>
+                <div class="card">
+                    <div class="card-body" id="new_card">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ task.date }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ task.description }}</h6>
+                    </div>
                 </div>
-            </div>
-    {% endfor %}
-  </table>
-
+            </tr>
+        {% endfor %}
+    </table>
     <br>
 
-  {% if messages %}
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Task</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="taskForm">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="date">Date:</label>
+                        <input placeholder="Select date" type="date" name="date" id="date" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title">Title:</label>
+                        <input id="title" name="title" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description">Description:</label>
+                        <input id="description" name="description" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" onclick="addTask()" data-bs-dismiss="modal">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    {% if messages %}
         <ul>
             {% for message in messages %}
                 <li>{{ message }}</li>
                 {% endfor %}
         </ul>
-  {% endif %}
+    {% endif %}
 
  {% endblock content %}

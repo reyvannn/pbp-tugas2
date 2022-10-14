@@ -1,11 +1,14 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.http import HttpResponseRedirect, HttpRequest
-from django.urls import reverse
 from django import forms
+from django.urls import reverse
+from django.core import serializers
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect, HttpRequest, HttpResponse, HttpResponseBadRequest
+from django.views.decorators.csrf import csrf_exempt
+
 import todolist.models as models
 import datetime
 
@@ -23,6 +26,7 @@ def show_homepage(request):
     }
     return render(request, 'todolist.html', context)
 
+@login_required(login_url='/todolist/login/')
 def create_task(request: HttpRequest):
     form = CreateTaskForm()
     if request.method == "POST":
@@ -73,3 +77,20 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('todolist:login'))
     response.delete_cookie('last_login')
     return response
+
+@login_required(login_url='/todolist/login/')
+def get_json(request):
+    data = models.Task.objects.filter(user=request.user).order_by("date").all()
+    return HttpResponse(serializers.serialize("json", data))
+
+@login_required(login_url='/todolist/login/')
+@csrf_exempt
+def add_task_json(request):
+    if request.method=="POST":
+        date = request.POST.get("date")
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        new_task = models.Task(date=date, title=title, description=description, user=request.user)
+        new_task.save()
+        return HttpResponse(serializers.serialize("json", [new_task]))
+    return HttpResponseBadRequest()
